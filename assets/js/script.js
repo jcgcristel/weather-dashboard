@@ -8,17 +8,30 @@ var APIkey = `ec45c559fdda3ac235725be56933003e`;
 var suggestedCities = [];
 var weather;
 
+// convert kelvin to celsius
+var kelvinToCelsius = function(kelvin) {
+    return (Math.round(kelvin - 273.15));
+}
+
 // display current weather
 var displayCurrentWeather = function() {
     var current = weather.current;
+    var iconUrl = `https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`;
 
     console.log(current.weather[0].main);
-    console.log(current.weather[0].icon); // will be used to determine picture
 
     console.log(current.temp);
     console.log(current.humidity);
     console.log(current.wind_speed);
     console.log(current.uvi);
+    
+    $(`#current-icon`).attr("src", iconUrl);
+    $(`#current-description`).text(`${current.weather[0].main}`)
+    
+    $(`#temp`).text(`${current.temp}\u00B0`);
+    $(`#humidity`).text(`Humidity: ${current.humidity}%`)
+    $(`#wind_speed`).text(`Wind: ${current.wind_speed} m/s`);
+    $(`#uvi`).text(`${current.uvi}`)
 }
 
 // gets the weather
@@ -31,6 +44,7 @@ var getWeather = function(lat, lon) {
     .then(response => response.json())
     .then(data => {
             weather = data;
+            weather.current.temp = kelvinToCelsius(data.current.temp);
             displayCurrentWeather();
         });
     }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
 <body>   
@@ -11,26 +12,35 @@
         Weather Dashboard
     </header>
 
-    <div class="search-city">
-        <input list="city-options" type="text" id="city" placeholder="Search for a city">
-        <datalist id="city-options"></datalist>
-        <button type="submit" id="submit">Submit</button>
-    </div>
-
-    <div class="prev-cities-box">
-        <h2>Previous Cities</h2>
-        <ul class="prev-cities">
-        </ul>
-    </div>
-
     <div>
         <h2>Current Forecast</h2>
-        <div>
+        <div class="current-weather-info">
+            <div class="current-description">
+                <img id="current-icon" src="https://openweathermap.org/img/wn/10d@2x.png">
+                <p id="current-description">Rainy</p>
+            </div>
+            <div class="current-info">
+                <p id="temp">Temp</p>
+                <p id="humidity">Humidity</p>
+                <p id="wind_speed">Wind Speed</p>
+                <p>UV Index: <span id="uvi"></span></p>
+            </div>
         </div>
     </div>
 
     <div>
         <h2>5-Day Forecast</h2>
+    </div>
+
+    <div class="search-city">
+        <input list="city-options" type="text" id="city" placeholder="Search for a city">
+        <datalist id="city-options"></datalist>
+        <button type="submit" id="submit">Submit</button>
+    </div>
+    <div class="prev-cities-box">
+        <h2>Previous Cities</h2>
+        <ul class="prev-cities">
+        </ul>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
