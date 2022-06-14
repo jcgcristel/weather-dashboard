@@ -4,25 +4,40 @@ var testlon = -90.04;
 var APIkey = `ec45c559fdda3ac235725be56933003e`;
 
 
-// variables
-var lat;
-var lon;
+// Variables
+var suggestedCities = [];
+var weather;
 
+// display current weather
+var displayCurrentWeather = function() {
+    var current = weather.current;
 
-// gets the weather depending on the longitude and latitude
+    console.log(current.weather[0].main);
+    console.log(current.weather[0].icon); // will be used to determine picture
+
+    console.log(current.temp);
+    console.log(current.humidity);
+    console.log(current.wind_speed);
+    console.log(current.uvi);
+}
+
+// gets the weather
+// lat : latitude of city
+// lon : longtitude of city
 var getWeather = function(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIkey}`; //&exclude=${part}
     
     fetch(`${apiURL}`)
     .then(response => response.json())
     .then(data => {
-           console.log(data);
-           // display weather
+            weather = data;
+            displayCurrentWeather();
         });
     }
     
 // gets the longitude and latitude of the city
-var getCity = function(location) {
+var getCity = function() {
+    var location = $("#city").val();
     var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${APIkey}`;
 
     fetch(geoCode)
@@ -30,8 +45,12 @@ var getCity = function(location) {
         .then(data => {
             getWeather(data[0].lat, data[0].lon);
             savePrevCity(data[0].name, data[0].state, data[0].country);
+            
             // clears input
             $("#city").val("");
+
+            // clear options list
+            $("#city-options").empty();          
         });
 }
 
@@ -54,10 +73,10 @@ var displaySuggestedCityList = function() {
     // clear options list
     suggestedCityListEl.empty();
         
-    for (var i = 0; i < cityList.length; i++) {
+    for (var i = 0; i < suggestedCities.length; i++) {
         // create suggestedCityEl
         var suggestedCityEl = $(`<option>`)
-            .attr('value', locationString(cityList[i].name,cityList[i].state,cityList[i].country));    
+            .attr('value', locationString(suggestedCities[i].name,suggestedCities[i].state,suggestedCities[i].country));    
 
         suggestedCityListEl.append(suggestedCityEl);
     }
@@ -71,32 +90,28 @@ var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=
     fetch(geoCode)
         .then(response => response.json())
         .then(data => {
-            cityList = data;
+            suggestedCities = data;
             displaySuggestedCityList();
         });
 }
 
-// displays the list 
-var parseSubmission = function() {
-    var submittedCity = $("#city").val();
-    getCity(submittedCity);
-}
-
 // update previously searched cities
 var savePrevCity = function(city, state, country) {  
+    // generates proper string of [City, Country] or [City, State, Country]
     var prevCity = locationString(city, state, country);
-    console.log(prevCity);
 
-    var cityListEl = $(`.prev-cities`);
-
-    var cityListItem = $(`<li>`)
+    // create list item with city name
+    var prevCityEl = $(`<li>`)
         .text(prevCity)
         .addClass(`prev-city`);
     
-    cityListEl.append(cityListItem);
+    // add created list item to previous searched cities
+    var prevCityListEl = $(`.prev-cities`);
+    prevCityListEl.append(prevCityEl);
 }
 
+// event listeners
 $("#city").on(`keyup change`, getCityList);
-$("#submit").on(`click`, parseSubmission);
+$("#submit").on(`click`, getCity);
 
 // getCityList();
