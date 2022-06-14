@@ -11,7 +11,10 @@ body {
     display: flex;
     border: 1px solid red;
     background-color: powderblue;
+<<<<<<< HEAD
     width: 50%;
+=======
+>>>>>>> 9b0f6ae81472e51b576e13c51ac4c9322b83bec5
 }
 
 .current-description {
