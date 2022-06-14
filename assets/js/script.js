@@ -4,12 +4,8 @@ var testlon = -90.04;
 var APIkey = `ec45c559fdda3ac235725be56933003e`;
 
 
-<<<<<<< HEAD
-// variables
-=======
 // Variables
 var suggestedCities = [];
->>>>>>> 9b0f6ae81472e51b576e13c51ac4c9322b83bec5
 var weather;
 
 // convert kelvin to celsius
@@ -45,79 +41,6 @@ var getWeather = function(lat, lon) {
     var apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIkey}`; //&exclude=${part}
     
     fetch(`${apiURL}`)
-<<<<<<< HEAD
-        .then(response => response.json())
-        .then(data => {
-           weather = data;
-           displayWeather(data);
-        });
-}
-
-// {city name},{state code},{country code}
-var getCityList = function() {
-    var cityName = $("#city").val();
-    var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${APIkey}`;
-
-    fetch(geoCode)
-        .then(response => response.json())
-        .then(data => {
-            cityList = data;
-            displaySuggestedCityList();
-        });
-}
-
-
-var getCityLonLan = function(location) {
-    var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${APIkey}`;
-    
-    fetch(geoCode)
-    .then(response => response.json())
-    .then(data => {
-        getWeather(data[0].lat, data[0].lon);
-    });
-}
-
-var parseSubmission = function() {
-    var submittedCity = $("#city").val();
-    submittedCity = submittedCity.replace(" ", "");
-    getCityLonLan(submittedCity);
-}
-
-var displaySuggestedCityList = function() {
-    var cityListEl = $("#city-options");
-
-    // clear options list
-    cityListEl.empty();
-        
-    for (var i = 0; i < cityList.length; i++) {
-        var cityEl = $(`<option>`);
-        
-        // checks if state is undefined
-        if (cityList[i].state) {
-            // if all values are present, show state
-            cityEl.attr("value", `${cityList[i].name}, ${cityList[i].state}, ${cityList[i].country}`);    
-        }
-        else {
-            // if state is undefined shows only name, country
-            cityEl.attr("value", `${cityList[i].name}, ${cityList[i].country}`);         
-        }
-
-        cityListEl.append(cityEl);
-    }
-}
-
-var displayWeather = function(data) {
-    // weather conditions (data.current.weather[0].descriptions)
-    console.log("Description " + data.current.weather[0].description);
-    // temperature
-    console.log("Temp " + data.current.temp);
-    // humidity
-    console.log("Humidity " + data.current.humidity);
-    // wind speed
-    console.log("Wind " + data.current.wind_speed);
-    // uv index
-    console.log("UV " + data.current.uvi);
-=======
     .then(response => response.json())
     .then(data => {
             weather = data;
@@ -155,7 +78,6 @@ var locationString = function(city, state, country) {
     else {
         return `${city}, ${country}`;
     }
->>>>>>> 9b0f6ae81472e51b576e13c51ac4c9322b83bec5
 }
 
 // displays a list of suggested cities depending on what is being inputed
