@@ -26,11 +26,11 @@ var displayCurrentWeather = function() {
     console.log(current.uvi);
     
     $(`#current-icon`).attr("src", iconUrl);
-    $(`#current-description`).text(`${current.weather[0].main}`)
-    
     $(`#temp`).text(`${current.temp}\u00B0`);
-    $(`#humidity`).text(`Humidity: ${current.humidity}%`)
-    $(`#wind_speed`).text(`Wind: ${current.wind_speed} m/s`);
+        
+
+    $(`#humidity`).text(`${current.humidity}%`)
+    $(`#wind_speed`).text(`${current.wind_speed} m/s`);
     $(`#uvi`).text(`${current.uvi}`)
 }
 

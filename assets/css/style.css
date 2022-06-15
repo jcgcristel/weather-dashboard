@@ -1,45 +1,98 @@
+:root {
+    --light-colour: rgb(162,196,201);
+    --colour: rgb(118,165,175);
+    --darker-colour: rgb(69,129,142);
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.current-weather-info {
-    display: flex;
-    border: 1px solid red;
-    background-color: powderblue;
-<<<<<<< HEAD
-    width: 50%;
-=======
->>>>>>> 9b0f6ae81472e51b576e13c51ac4c9322b83bec5
+section {
+    margin: 10px;
+    border: 2px solid red;
 }
 
-.current-description {
-    display: flex;
-    flex-flow: column;
-    border: 1px solid yellow;
-    align-items: center;
-    justify-content: center;
+.title {
+    background-color: antiquewhite;
+}
+
+.card {
+    background-color: var(--light-colour);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* --- weather section --- */
+
+.current-weather {
+    font-size: 20px;
 }
 
 .current-info {
     display: flex;
-    flex-flow: column;;
-    border: 1px solid blue;
-    /* align-items: center; */
+    width: 100%;  
+}
+
+/* current location */
+
+.current-location {
+    padding: 25px;
+    text-align: center;
+}
+
+#current-date {
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.current-weather-info {
+    padding-bottom: 75px;
+    display: flex;
+    width: 100%;
+}
+
+.current-main-info {
+    /* border: 1px solid yellow; */
+    padding-bottom: 25px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
     justify-content: center;
+    padding-left: 50px;
+}
+
+#temp {
+    font-size: 42px;
+    padding-top: 50px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.current-other-info {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-grow: 1;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.current-other-info p {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.current-other-info p span {
+    padding-left: 10px;
+    font-size: 20px;
 }
 
 #current-icon {
 
-}
-
-#temp {
-    font-size: 34px;
-    padding-top: 50px;
-    margin-bottom: 25px;
-    font-weight: bold;
 }
