@@ -7,6 +7,7 @@ var APIkey = `ec45c559fdda3ac235725be56933003e`;
 // Variables
 var suggestedCities = [];
 var cityName;
+var test;
 
 // convert kelvin to celsius
 var kelvinToCelsius = function(kelvin) {
@@ -90,6 +91,8 @@ var displayForecastedWeather = function() {
 // lat : latitude of city
 // lon : longtitude of city
 var getWeather = function(lat, lon) {
+    console.log("calling weater api");
+
     var apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIkey}`; //&exclude=${part}
     
     fetch(`${apiURL}`)
@@ -107,9 +110,10 @@ var getCity = function(location) {
 
     fetch(geoCode)
         .then(response => response.json())
-        .then(data => {
+        .then(data => {          
             getWeather(data[0].lat, data[0].lon);
             savePrevCity(data[0].name, data[0].state, data[0].country);
+            
             cityName = data[0].name;
 
             // clears input
@@ -150,16 +154,29 @@ var displaySuggestedCityList = function() {
 
 // pulls a list of cities depending on what is written in the input
 var getCityList = function() {
-cityName = $("#city").val();
+input = $("#city").val();
 
-var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${APIkey}`;
+    if (input) {
+        var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${APIkey}`;
 
-    fetch(geoCode)
-        .then(response => response.json())
-        .then(data => {
-            suggestedCities = data;
-            displaySuggestedCityList();
-        });
+            fetch(geoCode)
+                .then(response => response.json())
+                .then(data => {
+                    suggestedCities = data;
+                    displaySuggestedCityList();
+                });
+    }
+}
+
+// checks to see if city already exists in history
+var cityExists = function(city) {
+    var prevCityEl = $('.prev-city');  
+    for (var i = 0; i < prevCityEl.length; i++) {
+        if (prevCityEl.find('h3')[i].innerText === city) {
+            return true;
+        }
+    }
+    return false
 }
 
 // update previously searched cities
@@ -167,26 +184,35 @@ var savePrevCity = function(city, state, country) {
     // generates proper string of [City, Country] or [City, State, Country]
     var prevCity = locationString(city, state, country);
 
-    // create list item with city name
-    var prevCities = $(`.prev-cities`);
-
-    var prevCityCardEl = $(`<div>`).addClass(`card prev-city`);
+    // if city is not in history, log it in history
+    if (!cityExists(prevCity)) {
+        var prevCities = $(`.prev-cities`);
     
-    var prevCityEl = $(`<h3>`).text(prevCity);
-    
-    var prevCityDivEl = $(`<div>`)    
-    var prevCityImgEl =$(`<img>`).attr(`src`, `https://openweathermap.org/img/wn/01d.png`);
-    var prevCityTempEl = $(`<p>`).text(`22`);
-    prevCityDivEl.append(prevCityImgEl, prevCityTempEl);
+        // create card element
+        var prevCityCardEl = $(`<div>`).addClass(`card prev-city`);
+        // create city name element
+        var prevCityEl = $(`<h3>`).text(prevCity);
+        
+        // create div element to hold weather of city
+        var prevCityDivEl = $(`<div>`)    
+        var prevCityImgEl =$(`<img>`).attr(`src`, `https://openweathermap.org/img/wn/01d.png`);
+        var prevCityTempEl = $(`<p>`).text(`22`);
+        
+        // display html
+        prevCityDivEl.append(prevCityImgEl, prevCityTempEl);
+        prevCityCardEl.append(prevCityEl, prevCityDivEl);
+        prevCities.append(prevCityCardEl);
+    }
+}
 
-    prevCityCardEl.append(prevCityEl, prevCityDivEl);
-
-    prevCities.append(prevCityCardEl);
-
-    
-    // // add created list item to previous searched cities
-    // var prevCityListEl = $(`.prev-cities`);
-    // prevCityListEl.append(prevCityEl);
+var prevCityHandler = function(event) {
+    // when selecting prev city card
+    if (event.target.matches(".prev-city")) {
+        // find city name of card
+        var prevCityName = $(event.target).find('h3').text();
+        // update weather information based on city name found on card
+        getCity(prevCityName)
+    }
 }
 
 // event listeners
@@ -195,5 +221,6 @@ $("#search").submit(function(event){
     event.preventDefault();
     getCity($('#city').val());
 });
+$(".prev-cities").on('click', prevCityHandler);
 
 // getCityList();
