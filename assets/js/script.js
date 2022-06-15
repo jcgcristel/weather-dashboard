@@ -102,8 +102,7 @@ var getWeather = function(lat, lon) {
 }
     
 // gets the longitude and latitude of the city
-var getCity = function() {
-    var location = $("#city").val();
+var getCity = function(location) {
     var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${APIkey}`;
 
     fetch(geoCode)
@@ -169,17 +168,32 @@ var savePrevCity = function(city, state, country) {
     var prevCity = locationString(city, state, country);
 
     // create list item with city name
-    var prevCityEl = $(`<li>`)
-        .text(prevCity)
-        .addClass(`prev-city`);
+    var prevCities = $(`.prev-cities`);
+
+    var prevCityCardEl = $(`<div>`).addClass(`card prev-city`);
     
-    // add created list item to previous searched cities
-    var prevCityListEl = $(`.prev-cities`);
-    prevCityListEl.append(prevCityEl);
+    var prevCityEl = $(`<h3>`).text(prevCity);
+    
+    var prevCityDivEl = $(`<div>`)    
+    var prevCityImgEl =$(`<img>`).attr(`src`, `https://openweathermap.org/img/wn/01d.png`);
+    var prevCityTempEl = $(`<p>`).text(`22`);
+    prevCityDivEl.append(prevCityImgEl, prevCityTempEl);
+
+    prevCityCardEl.append(prevCityEl, prevCityDivEl);
+
+    prevCities.append(prevCityCardEl);
+
+    
+    // // add created list item to previous searched cities
+    // var prevCityListEl = $(`.prev-cities`);
+    // prevCityListEl.append(prevCityEl);
 }
 
 // event listeners
 $("#city").on(`keyup change`, getCityList);
-$("#submit").on(`click`, getCity);
+$("#search").submit(function(event){
+    event.preventDefault();
+    getCity($('#city').val());
+});
 
 // getCityList();

@@ -11,11 +11,9 @@
 
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-section {
-    margin: 10px;
-    border: 2px solid red;
+    display: flex;
+    height: 97vh;  
+    border: 1px solid red;
 }
 
 .card {
@@ -26,7 +24,8 @@ section {
 
 .title {
     background-color: transparent;
-    border: 3px solid var(--light-colour)
+    border: 3px solid var(--light-colour);
+    height: 7%;
 }
 
 .title h1 {
@@ -34,11 +33,98 @@ section {
     text-align: center;
 }
 
+/*  search section  */
 
-/* --- weather section --- */
+.search-box {
+    display: flex;
+    flex-flow: column;
+    width: 20%;
+    background-color: var(--colour);
+    align-items: center;
+}
+
+form {
+    margin: 25px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid white;
+}
+
+input {
+    font-size: 18px;
+    border-radius: 10px;
+    border: 2px solid var(--darker-colour);
+    padding-left: 10px;
+    height: 30px;
+    width: 95.5%;
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid var(--darker-colour);
+    padding: 5px;
+    width: 100%;
+}
+
+/* search */
+
+.search-box h2 {
+    font-size: 14px;
+    font-style: italic;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+/* previous city */
+
+.prev-cities {
+    width: 80%;
+}
+
+.prev-city {
+    background-color: var(--darker-colour);
+    padding: 10px 30px;
+    opacity: 70%;
+}
+
+.prev-city:hover {
+    opacity: 100%;
+}
+
+.prev-city h3 {
+    font-size: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.prev-city div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+.prev-city div p {
+    font-size: 20px;
+}
+
+/*  weather section  */
+
+.weather {
+    width: 95%;
+    height: 100%;
+}
 
 .current-weather {
-    font-size: 20px;
+    font-size: 42px;
+    height: 60%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
 }
 
 .current-info {
@@ -46,17 +132,19 @@ section {
     width: 100%;  
 }
 
-/* --- current location --- */
+/*  current location  */
 
 .current-location {
     padding: 25px;
     text-align: center;
+    margin-bottom: 30px;
+    /* background-color: aqua; */
 }
 
 #current-date {
     font-style: italic;
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .current-weather-info {
@@ -65,7 +153,7 @@ section {
     width: 100%;
 }
 
-/* --- current main info --- */
+/*  current main info  */
 
 .current-main-info {
     /* border: 1px solid yellow; */
@@ -82,7 +170,7 @@ section {
     font-weight: bold;
 }
 
-/* --- current other info --- */
+/*  current other info  */
 
 .current-other-info {
     /* border: 1px solid blue; */
@@ -94,13 +182,13 @@ section {
 }
 
 .current-other-info p {
-    margin-bottom: 5px;
-    font-size: 12px;
+    margin-bottom: 15px;
+    font-size: 18px;
 }
 
 .current-other-info p span {
     padding-left: 10px;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 #uvi {
@@ -109,17 +197,20 @@ section {
     background-color: aquamarine;
 }
 
-/* --- forecast weather */
+/*  forecast weather */
 
 .forecast-weather {
     display: flex;
+    height: 29.7%;
     width: 100%;
     text-align: center;
+    font-size: 20px;
 }
 
 .day {
     flex-grow: 1;
     padding: 15px;
+    padding-top: 60px;
 }
 
 .forecast-main-info {
@@ -129,6 +220,6 @@ section {
 }
 
 .forecast-main-info p {
-    padding-top: 10px;
-    font-size: 24px;
+    padding-top: 5px;
+    font-size: 32px;
 }
