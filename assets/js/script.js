@@ -250,7 +250,7 @@ var selectPrevCityHandler = function(event) {
             .find('h3').text();
 
         // update weather information based on city name found on card
-        getCity(prevCityName)
+        getCity(prevCityName, displayWeather);
     }
 }
 
