@@ -18,15 +18,22 @@ section {
     border: 2px solid red;
 }
 
-.title {
-    background-color: antiquewhite;
-}
-
 .card {
     background-color: var(--light-colour);
     border-radius: 10px;
     margin: 10px;
 }
+
+.title {
+    background-color: transparent;
+    border: 3px solid var(--light-colour)
+}
+
+.title h1 {
+    padding: 10px;
+    text-align: center;
+}
+
 
 /* --- weather section --- */
 
