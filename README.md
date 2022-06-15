@@ -1,16 +1,20 @@
 # weather-dashboard
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
+A weather dashboard to show you the forecast of an inputed city.
 
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+You will be able to view the current weather as well as the forecast for the following 5 days.
 
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+The basic information will be provided:
+* Temperature
+* Humidity
+* Wind
+* UVI (with a visual indicator of low, moderate, and high)
 
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+The site will also note the 5 most recent searches.
 
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+## website
+https://jcgcristel.github.io/weather-dashboard/
+
+![alt text](./assets/images/site-prev.JPG)
+
+## contributions
+Joyce C. Garnett
