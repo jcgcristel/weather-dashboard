@@ -6,7 +6,7 @@ var APIkey = `4c340d93543c0ebde7a6871889fd5734`;
 
 // 4c340d93543c0ebde7a6871889fd5734
 // dbdaa4d09d3a1843436cedc3ebf6a645
-// ec45c559fdda3ac235725be56933003e -> blocked
+// ec45c559fdda3ac235725be56933003e -> blockesdsdsddddddddfsd
 // broken function caused over 1000 fetch requests :|
 
 var test;
@@ -135,7 +135,7 @@ var getWeather = function(lat, lon, nextFunction) {
     
 // gets the longitude and latitude of the city
 var getCity = function(location, nextFunction) {
-    var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${APIkey}`;
+    var geoCode = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${APIkey}`;
     var runNext = nextFunction;
 
     fetch(geoCode)
@@ -188,7 +188,7 @@ var getCityList = function() {
 input = $("#city").val();
 
     if (input) {
-        var geoCode = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${APIkey}`;
+        var geoCode = `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=${limit}&appid=${APIkey}`;
 
             fetch(geoCode)
                 .then(response => response.json())
