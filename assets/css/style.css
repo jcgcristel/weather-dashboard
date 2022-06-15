@@ -12,8 +12,7 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     display: flex;
-    height: 97vh;  
-    border: 1px solid red;
+    height: 97vh;
 }
 
 .card {
@@ -225,4 +224,8 @@ button:hover {
 .forecast-main-info p {
     padding-top: 5px;
     font-size: 32px;
+}
+
+.forecast-main-info p span {
+    font-size: 16px;
 }
