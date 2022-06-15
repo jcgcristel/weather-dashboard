@@ -29,6 +29,24 @@ var getDateTimeString = function(time) {
     return time.toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' });
 }
 
+// uvi colour indicator
+// 0-5: green   / low
+// 6-7: orange  / moderate
+// 8+ : red     / high
+var uviStatus = function(uvi) {
+    switch (true) {
+        case (uvi >= 0 && uvi <= 5):
+            return 'aquamarine';
+            break;
+        case (uvi > 5 && uvi <= 7):
+            return 'sandybrown';
+            break;
+        case (uvi > 7):
+            return 'firebrick'
+            break;
+    }
+}
+
 // display current weather
 var displayCurrentWeather = function() {
     var current = weather.current;
@@ -47,7 +65,8 @@ var displayCurrentWeather = function() {
     $(`#temp`).text(`${temp}\u00B0`);
     $(`#humidity`).text(`${current.humidity}%`)
     $(`#wind_speed`).text(`${current.wind_speed} m/s`);
-    $(`#uvi`).text(`${current.uvi}`)
+    $(`#uvi`).text(current.uvi).css("background-color", uviStatus(current.uvi));
+
 }
 
 var displayForecastedWeather = function() {

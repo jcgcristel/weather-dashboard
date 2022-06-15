@@ -192,10 +192,12 @@ button:hover {
     font-size: 24px;
 }
 
+/* low: aquamarine */
+/* moderate: sandybrown */
+/* high: firebrick  */
 #uvi {
     border-radius: 10px;
     padding-right: 10px;
-    background-color: aquamarine;
 }
 
 /*  forecast weather */
