@@ -17,21 +17,41 @@ var kelvinToCelsius = function(kelvin) {
 var displayCurrentWeather = function() {
     var current = weather.current;
     var iconUrl = `https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`;
-
-    console.log(current.weather[0].main);
-
-    console.log(current.temp);
-    console.log(current.humidity);
-    console.log(current.wind_speed);
-    console.log(current.uvi);
-    
+   
     $(`#current-icon`).attr("src", iconUrl);
     $(`#temp`).text(`${current.temp}\u00B0`);
-        
-
     $(`#humidity`).text(`${current.humidity}%`)
     $(`#wind_speed`).text(`${current.wind_speed} m/s`);
     $(`#uvi`).text(`${current.uvi}`)
+}
+
+var displayForecastedWeather = function() {
+    // var day = weather.daily;
+
+    var forecastEl = $(`.forecast-weather`);
+    forecastEl.empty();
+
+    for (var i = 1; i <= 5; i++) {  
+        console.log(i);      
+        var dayCardEl = $(`<div>`).addClass(`card day`);
+        
+        // create date element
+        var dayDateEl = $(`<p>`).text('Date');
+        
+        // create main info element
+        var dayMainInfoEl = $('<div>').addClass(`forecast-main-info`);
+        var dayIcoEl = $(`<img>`).attr(`src`, `https://openweathermap.org/img/wn/10d.png`)
+        var dayTempEl = $(`<p>`).text("22");
+        dayMainInfoEl.append(dayIcoEl);
+
+        // create other info element
+        var dayWindEl = $(`<p>`).text("20 m/s");
+        var dayHumidityEl = $(`<p>`).text("66%");
+
+        // display onto html document
+        dayCardEl.append(dayDateEl, dayMainInfoEl, dayWindEl, dayHumidityEl);
+        forecastEl.append(dayCardEl);
+    }
 }
 
 // gets the weather
@@ -46,8 +66,9 @@ var getWeather = function(lat, lon) {
             weather = data;
             weather.current.temp = kelvinToCelsius(data.current.temp);
             displayCurrentWeather();
+            // displayForecastedWeather();
         });
-    }
+}
     
 // gets the longitude and latitude of the city
 var getCity = function() {

@@ -67,7 +67,7 @@ section {
     align-items: center;
     justify-content: right;
     padding-bottom: 25px;
-    padding-right: 100px;
+    padding-right: 10%;
 }
 
 #temp {
@@ -83,7 +83,7 @@ section {
     width: 50%;
     flex-flow: column;
     justify-content: center;
-    padding-left: 50px;
+    padding-left: 0;
 }
 
 .current-other-info p {
@@ -94,6 +94,12 @@ section {
 .current-other-info p span {
     padding-left: 10px;
     font-size: 20px;
+}
+
+#uvi {
+    border-radius: 10px;
+    padding-right: 10px;
+    background-color: aquamarine;
 }
 
 /* --- forecast weather */
