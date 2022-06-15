@@ -206,10 +206,19 @@ var savePrevCity = function(city, state, country) {
 }
 
 var prevCityHandler = function(event) {
+    console.log(event.target);
     // when selecting prev city card
     if (event.target.matches(".prev-city")) {
+        console.log("clicked prev-city");
         // find city name of card
         var prevCityName = $(event.target).find('h3').text();
+        // update weather information based on city name found on card
+        getCity(prevCityName)
+    }
+    else if (event.target.matches("h3")) {
+        console.log("clicked h3");
+        // find city name of card
+        var prevCityName = $(event.target).text();
         // update weather information based on city name found on card
         getCity(prevCityName)
     }
