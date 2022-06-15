@@ -194,13 +194,13 @@ var savePrevCity = function(city, state, country) {
         var prevCityEl = $(`<h3>`).text(prevCity);
         
         // create div element to hold weather of city
-        var prevCityDivEl = $(`<div>`)    
-        var prevCityImgEl =$(`<img>`).attr(`src`, `https://openweathermap.org/img/wn/01d.png`);
-        var prevCityTempEl = $(`<p>`).text(`22`);
+        // var prevCityDivEl = $(`<div>`)    
+        // var prevCityImgEl =$(`<img>`).attr(`src`, `https://openweathermap.org/img/wn/01d.png`);
+        // var prevCityTempEl = $(`<p>`).text(`22`);
         
         // display html
-        prevCityDivEl.append(prevCityImgEl, prevCityTempEl);
-        prevCityCardEl.append(prevCityEl, prevCityDivEl);
+        // prevCityDivEl.append(prevCityImgEl, prevCityTempEl);
+        prevCityCardEl.append(prevCityEl);
         prevCities.append(prevCityCardEl);
     }
 }
