@@ -39,7 +39,7 @@ section {
     width: 100%;  
 }
 
-/* current location */
+/* --- current location --- */
 
 .current-location {
     padding: 25px;
@@ -58,29 +58,32 @@ section {
     width: 100%;
 }
 
+/* --- current main info --- */
+
 .current-main-info {
     /* border: 1px solid yellow; */
-    padding-bottom: 25px;
     display: flex;
-    flex-grow: 1;
+    width: 50%;
     align-items: center;
-    justify-content: center;
-    padding-left: 50px;
+    justify-content: right;
+    padding-bottom: 25px;
+    padding-right: 100px;
 }
 
 #temp {
     font-size: 42px;
-    padding-top: 50px;
-    margin-bottom: 25px;
     font-weight: bold;
 }
+
+/* --- current other info --- */
 
 .current-other-info {
     /* border: 1px solid blue; */
     display: flex;
-    flex-grow: 1;
+    width: 50%;
     flex-flow: column;
     justify-content: center;
+    padding-left: 50px;
 }
 
 .current-other-info p {
@@ -93,6 +96,26 @@ section {
     font-size: 20px;
 }
 
-#current-icon {
+/* --- forecast weather */
 
+.forecast-weather {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+.day {
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.forecast-main-info {
+    display: flex;
+    justify-content: center;
+    padding-right: 25px;
+}
+
+.forecast-main-info p {
+    padding-top: 10px;
+    font-size: 24px;
 }
